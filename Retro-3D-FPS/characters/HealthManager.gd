@@ -26,7 +26,7 @@ func do_hurt(damage: int, dir: Vector3):
 	if cur_health <= 0:
 		return
 	cur_health -= damage
-	print("Health =", cur_health, "damage =", damage)
+	print("Health = ", cur_health, "; damage dealt = ", damage)
 	if cur_health <= gib_at:
 		spawn_gibs()
 		emit_signal("gibbed")

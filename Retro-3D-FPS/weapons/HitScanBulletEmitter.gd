@@ -28,8 +28,8 @@ func fire():
 	
 	var result = space_state.intersect_ray(query)
 	
-	if result and result.collider.has_method("hurt"):
-		result.collider.hurt(damage, result.normal)
+	if result and result.collider.has_method("do_hurt"):
+		result.collider.do_hurt(damage, result.normal)
 	elif result:
 		var hit_effect_inst = hit_effect.instantiate()
 		get_tree().get_root().add_child(hit_effect_inst)

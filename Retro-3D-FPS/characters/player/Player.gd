@@ -75,7 +75,7 @@ func _input(event):
 			weapon_manager.switch_to_last_weapon()
 
 func hurt(damage, dir):
-	health_manager.hurt(damage, dir)
+	health_manager.do_hurt(damage, dir)
 	
 func heal(amount):
 	health_manager.heal(amount)

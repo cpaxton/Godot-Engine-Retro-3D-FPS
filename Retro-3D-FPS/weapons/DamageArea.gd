@@ -2,7 +2,7 @@ extends Area3D
 
 
 var bodies_to_exclude = []
-var damage = 1
+var damage = 15
 
 func set_damage(_damage: int):
 	damage = _damage
