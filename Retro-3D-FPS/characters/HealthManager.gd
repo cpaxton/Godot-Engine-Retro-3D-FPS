@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 var blood_spray = preload("res://effects/BloodSpray.tscn")
 var gibs = preload("res://effects/Gibs.tscn")
@@ -9,10 +9,10 @@ signal healed
 signal health_changed
 signal gibbed
 
-export var max_health = 100
+@export var max_health = 100
 var cur_health = 1
 
-export var gib_at = -10
+@export var gib_at = -10
 
 func _ready():
 	init()
@@ -21,11 +21,12 @@ func init():
 	cur_health = max_health
 	emit_signal("health_changed", cur_health)
 
-func hurt(damage: int, dir: Vector3):
+func do_hurt(damage: int, dir: Vector3):
 	spawn_blood(dir)
 	if cur_health <= 0:
 		return
 	cur_health -= damage
+	print("Health =", cur_health, "damage =", damage)
 	if cur_health <= gib_at:
 		spawn_gibs()
 		emit_signal("gibbed")
@@ -35,7 +36,7 @@ func hurt(damage: int, dir: Vector3):
 		emit_signal("hurt")
 	emit_signal("health_changed", cur_health)
 	
-func heal(amount: int):
+func do_heal(amount: int):
 	if cur_health <= 0:
 		return
 	cur_health += amount
@@ -45,13 +46,13 @@ func heal(amount: int):
 	emit_signal("health_changed", cur_health)
 
 func spawn_blood(dir):
-	var blood_spray_inst = blood_spray.instance()
+	var blood_spray_inst = blood_spray.instantiate()
 	get_tree().get_root().add_child(blood_spray_inst)
 	blood_spray_inst.global_transform.origin = global_transform.origin
 		
 	var children : Array = blood_spray_inst.get_children()
 	for child in children:
-		if child is Particles:
+		if child is GPUParticles3D or child is GPUParticles2D:
 			child.emitting = true
 		
 	if dir.angle_to(Vector3.UP) < 0.00005:
@@ -67,7 +68,7 @@ func spawn_blood(dir):
 	blood_spray_inst.global_transform.basis = Basis(x, y, z)
 
 func spawn_gibs():
-	var gibs_inst = gibs.instance()
+	var gibs_inst = gibs.instantiate()
 	get_tree().get_root().add_child(gibs_inst)
 	gibs_inst.global_transform.origin = global_transform.origin
 	gibs_inst.enable_gibs()
@@ -75,7 +76,7 @@ func spawn_gibs():
 func get_pickup(pickup_type, ammo):
 	match pickup_type:
 		Pickup.PICKUP_TYPES.HEALTH:
-			heal(ammo)
+			do_heal(ammo)
 
 
 

@@ -1,18 +1,18 @@
-extends Spatial
+extends Node3D
 
-onready var anim_player = $AnimationPlayer
-onready var bullet_emitters_base : Spatial = $BulletEmitters
-onready var bullet_emitters = $BulletEmitters.get_children()
+@onready var anim_player = $AnimationPlayer
+@onready var bullet_emitters_base : Node3D = $BulletEmitters
+@onready var bullet_emitters = $BulletEmitters.get_children()
 
-export var automatic = false
+@export var automatic = false
 
-var fire_point : Spatial
+var fire_point : Node3D
 var bodies_to_exclude: Array = []
 
-export var damage = 5
-export var ammo = 30
+@export var damage = 5
+@export var ammo = 30
 
-export var attack_rate = 0.2
+@export var attack_rate = 0.2
 var attack_timer : Timer
 var can_attack = true
 
@@ -22,11 +22,11 @@ signal out_of_ammo
 func _ready():
 	attack_timer = Timer.new()
 	attack_timer.wait_time = attack_rate
-	attack_timer.connect("timeout", self, "finish_attack")
+	attack_timer.connect("timeout", Callable(self, "finish_attack"))
 	attack_timer.one_shot = true
 	add_child(attack_timer)
 	
-func init(_fire_point: Spatial, _bodies_to_exclude: Array):
+func init(_fire_point: Node3D, _bodies_to_exclude: Array):
 	fire_point = _fire_point
 	bodies_to_exclude = _bodies_to_exclude
 	for bullet_emitter in bullet_emitters:

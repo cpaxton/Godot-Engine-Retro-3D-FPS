@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 enum WEAPON_SLOTS {MACHETE, MACHINE_GUN, SHOTGUN, ROCKET_LAUNCHER}
 var slots_unlocked = {
@@ -8,31 +8,31 @@ var slots_unlocked = {
 	WEAPON_SLOTS.ROCKET_LAUNCHER: false,
 }
 
-onready var anim_player = $AnimationPlayer
-onready var weapons = $Weapons.get_children()
-onready var alert_area_hearing = $AlertAreaHearing
-onready var alert_area_los = $AlertAreaLos
+@onready var anim_player = $AnimationPlayer
+@onready var weapons = $Weapons.get_children()
+@onready var alert_area_hearing = $AlertAreaHearing
+@onready var alert_area_los = $AlertAreaLos
 
 var cur_slot = 0
 var cur_weapon = null
-var fire_point : Spatial
+var fire_point : Node3D
 var bodies_to_exlude: Array = []
 
 signal ammo_changed
 
-func init(_fire_point: Spatial, _bodies_to_exclude: Array):
+func init(_fire_point: Node3D, _bodies_to_exclude: Array):
 	fire_point = _fire_point
 	bodies_to_exlude = _bodies_to_exclude
 	for weapon in weapons:
 		if weapon.has_method("init"):
 			weapon.init(fire_point, _bodies_to_exclude)
 			
-	weapons[WEAPON_SLOTS.MACHINE_GUN].connect("fired", self, "alert_nearby_enemies")
-	weapons[WEAPON_SLOTS.SHOTGUN].connect("fired", self, "alert_nearby_enemies")
-	weapons[WEAPON_SLOTS.ROCKET_LAUNCHER].connect("fired", self, "alert_nearby_enemies")
+	weapons[WEAPON_SLOTS.MACHINE_GUN].connect("fired", Callable(self, "alert_nearby_enemies"))
+	weapons[WEAPON_SLOTS.SHOTGUN].connect("fired", Callable(self, "alert_nearby_enemies"))
+	weapons[WEAPON_SLOTS.ROCKET_LAUNCHER].connect("fired", Callable(self, "alert_nearby_enemies"))
 	
 	for weapon in weapons:
-		weapon.connect("fired", self, "emit_ammo_changed_signal")
+		weapon.connect("fired", Callable(self, "emit_ammo_changed_signal"))
 	
 	switch_to_weapon_slot(WEAPON_SLOTS.MACHETE)
 	

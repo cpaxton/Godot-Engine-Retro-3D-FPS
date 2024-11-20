@@ -1,4 +1,4 @@
-extends KinematicBody
+extends CharacterBody3D
 
 var hotkeys = {
 	KEY_1: 0,
@@ -10,16 +10,16 @@ var hotkeys = {
 	KEY_7: 6,
 	KEY_8: 7,
 	KEY_9: 8,
-	KEY_8: 9,
+	KEY_0: 9,
 }
 
-export var mouse_sens = 0.5
+@export var mouse_sens = 0.5
 
-onready var camera = $Camera
-onready var character_mover = $CharacterMover
-onready var health_manager = $HealthManager
-onready var weapon_manager = $Camera/WeaponManager
-onready var pickup_manager = $PickupManager
+@onready var camera = $Camera3D
+@onready var character_mover = $CharacterMover
+@onready var health_manager = $HealthManager
+@onready var weapon_manager = $Camera3D/WeaponManager
+@onready var pickup_manager = $PickupManager
 
 var dead = false
 
@@ -28,12 +28,12 @@ func _ready():
 	character_mover.init(self)
 	
 	pickup_manager.max_player_health = health_manager.max_health
-	health_manager.connect("health_changed",pickup_manager, "update_player_health")
-	pickup_manager.connect("got_pickup", weapon_manager,"get_pickup")
-	pickup_manager.connect("got_pickup", health_manager,"get_pickup")
+	health_manager.connect("health_changed", Callable(pickup_manager, "update_player_health"))
+	pickup_manager.connect("got_pickup", Callable(weapon_manager, "get_pickup"))
+	pickup_manager.connect("got_pickup", Callable(health_manager, "get_pickup"))
 	health_manager.init()
-	health_manager.connect("dead", self, "kill")
-	weapon_manager.init($Camera/FirePoint, [self])
+	health_manager.connect("dead", Callable(self, "kill"))
+	weapon_manager.init($Camera3D/FirePoint, [self])
 
 func _process(_delta):
 	if Input.is_action_just_pressed("exit"):
@@ -66,12 +66,12 @@ func _input(event):
 		camera.rotation_degrees.x -= mouse_sens * event.relative.y
 		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -90, 90)
 	if event is InputEventKey and event.pressed:
-		if event.scancode in hotkeys:
-			weapon_manager.switch_to_weapon_slot(hotkeys[event.scancode])
+		if event.keycode in hotkeys:
+			weapon_manager.switch_to_weapon_slot(hotkeys[event.keycode])
 	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == BUTTON_WHEEL_DOWN:
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			weapon_manager.switch_to_next_weapon()
-		if event.button_index == BUTTON_WHEEL_UP:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			weapon_manager.switch_to_last_weapon()
 
 func hurt(damage, dir):

@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 var rocket = preload("res://weapons/Rocket.tscn")
 
@@ -12,7 +12,7 @@ func set_bodies_to_exclude(_bodies_to_exclude: Array):
 	bodies_to_exclude = _bodies_to_exclude
 	
 func fire():
-	var rocket_inst = rocket.instance()
+	var rocket_inst = rocket.instantiate()
 	rocket_inst.set_bodies_to_exclude(bodies_to_exclude)
 	get_tree().get_root().add_child(rocket_inst)
 	rocket_inst.global_transform = global_transform

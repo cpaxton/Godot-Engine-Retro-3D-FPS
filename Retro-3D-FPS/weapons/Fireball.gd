@@ -1,4 +1,4 @@
-extends KinematicBody
+extends CharacterBody3D
 
 
 var speed = 20
@@ -13,7 +13,7 @@ func set_bodies_to_exclude(bodies_to_exclude : Array):
 		add_collision_exception_with(body)
 		
 func _physics_process(delta):
-	var collision : KinematicCollision = move_and_collide(-global_transform.basis.z * speed * delta)
+	var collision : KinematicCollision3D = move_and_collide(-global_transform.basis.z * speed * delta)
 	if collision:
 		var collider = collision.collider
 		if collider.has_method("hurt"):
@@ -21,5 +21,5 @@ func _physics_process(delta):
 		$SmokeParticles.emitting = true
 		speed = 0
 		$Graphics.hide()
-		$CollisionShape.disabled = true
+		$CollisionShape3D.disabled = true
 

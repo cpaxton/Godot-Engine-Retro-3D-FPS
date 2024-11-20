@@ -1,4 +1,4 @@
-extends KinematicBody
+extends CharacterBody3D
 
 var explosion = preload("res://weapons/Explosion.tscn")
 
@@ -14,11 +14,11 @@ func set_bodies_to_exclude(bodies_to_exclude : Array):
 		add_collision_exception_with(body)
 		
 func _physics_process(delta):
-	var collision : KinematicCollision = move_and_collide(-global_transform.basis.z * speed * delta)
+	var collision : KinematicCollision3D = move_and_collide(-global_transform.basis.z * speed * delta)
 	if collision:
-		var collider = collision.collider
-		if collider.has_method("hurt"):
-			collider.hurt(impact_damage, -global_transform.basis.z)
+		var collider = collision.get_collider()
+		if collider and collider.has_method("hurt"):
+			collider.hurt()
 		explode()
 		
 func explode():
@@ -26,8 +26,8 @@ func explode():
 		return
 	exploded = true
 	speed = 0
-	$CollisionShape.disabled = true
-	var explosion_inst = explosion.instance()
+	$CollisionShape3D.disabled = true
+	var explosion_inst = explosion.instantiate()
 	get_tree().get_root().add_child(explosion_inst)
 	explosion_inst.global_transform.origin = global_transform.origin
 	explosion_inst.explode()

@@ -1,4 +1,4 @@
-extends Area
+extends Area3D
 
 
 class_name Pickup
@@ -8,5 +8,5 @@ enum PICKUP_TYPES {MACHINE_GUN, MACHINE_GUN_AMMO,
 	ROCKET_LAUNCHER, ROCKET_LAUNCHER_AMMO,
 	HEALTH}
 	
-export(PICKUP_TYPES) var pickup_type
-export var ammo = 10
+@export var pickup_type: PICKUP_TYPES
+@export var ammo = 10

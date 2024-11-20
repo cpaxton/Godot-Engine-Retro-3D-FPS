@@ -1,8 +1,8 @@
-extends Spatial
+extends Node3D
 
 var hit_effect = preload("res://effects/BulletHitEffect.tscn")
 
-export var distance = 10000
+@export var distance = 10000
 var bodies_to_exclude = []
 var damage = 1
 
@@ -13,19 +13,31 @@ func set_bodies_to_exclude(_bodies_to_exclude: Array):
 	bodies_to_exclude = _bodies_to_exclude
 	
 func fire():
-	var space_state = get_world().get_direct_space_state()
+	var space_state = get_world_3d().get_direct_space_state()
 	var our_pos = global_transform.origin
-	var result = space_state.intersect_ray(our_pos, our_pos - global_transform.basis.z * distance, bodies_to_exclude, 1 + 4, true, true)
+	
+	var query = PhysicsRayQueryParameters3D.create(
+		our_pos,
+		our_pos - global_transform.basis.z * distance,
+		1 + 4,  # collision mask
+		bodies_to_exclude
+	)
+	
+	query.collide_with_areas = true
+	query.collide_with_bodies = true
+	
+	var result = space_state.intersect_ray(query)
+	
 	if result and result.collider.has_method("hurt"):
 		result.collider.hurt(damage, result.normal)
 	elif result:
-		var hit_effect_inst = hit_effect.instance()
+		var hit_effect_inst = hit_effect.instantiate()
 		get_tree().get_root().add_child(hit_effect_inst)
 		hit_effect_inst.global_transform.origin = result.position
 		
 		var children : Array = hit_effect_inst.get_children()
 		for child in children:
-			if child is Particles:
+			if child is GPUParticles2D or child is GPUParticles3D:
 				child.emitting = true
 		
 		if result.normal.angle_to(Vector3.UP) < 0.00005:

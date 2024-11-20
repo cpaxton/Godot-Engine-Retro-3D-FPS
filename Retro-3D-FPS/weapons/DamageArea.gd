@@ -1,4 +1,4 @@
-extends Area
+extends Area3D
 
 
 var bodies_to_exclude = []

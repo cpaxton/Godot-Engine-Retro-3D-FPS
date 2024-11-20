@@ -1,132 +1,118 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=20 format=3 uid="uid://b1q1ebp0xvcrq"]
 
-[ext_resource path="res://environment/raw_assets/grass_lowres.png" type="Texture" id=1]
-[ext_resource path="res://environment/assets/brickwall.tscn" type="PackedScene" id=2]
-[ext_resource path="res://environment/assets/shed.tscn" type="PackedScene" id=3]
-[ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://pickups/MachineGunPickup.tscn" type="PackedScene" id=5]
-[ext_resource path="res://characters/enemies/BirdMonster.tscn" type="PackedScene" id=6]
-[ext_resource path="res://characters/enemies/ReptileMonster.tscn" type="PackedScene" id=7]
-[ext_resource path="res://pickups/MachineGunAmmoPickup.tscn" type="PackedScene" id=8]
-[ext_resource path="res://pickups/HealthPickup.tscn" type="PackedScene" id=9]
-[ext_resource path="res://pickups/RocketLauncherAmmoPickup.tscn" type="PackedScene" id=10]
-[ext_resource path="res://pickups/RocketLauncherPickup.tscn" type="PackedScene" id=11]
-[ext_resource path="res://pickups/ShotgunPickup.tscn" type="PackedScene" id=12]
-[ext_resource path="res://pickups/ShotgunAmmoPickup.tscn" type="PackedScene" id=13]
+[ext_resource type="Texture2D" uid="uid://dvpsdq87ex4we" path="res://environment/raw_assets/grass_lowres.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://bhnnq6yccrfbv" path="res://environment/assets/brickwall.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://environment/assets/shed.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://characters/player/Player.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://pickups/MachineGunPickup.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://kqg2bi00svnd" path="res://characters/enemies/BirdMonster.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://characters/enemies/ReptileMonster.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://pickups/MachineGunAmmoPickup.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://pickups/HealthPickup.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://pickups/RocketLauncherAmmoPickup.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://pickups/RocketLauncherPickup.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://pickups/ShotgunPickup.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://pickups/ShotgunAmmoPickup.tscn" id="13"]
 
-[sub_resource type="SpatialMaterial" id=1]
-albedo_texture = ExtResource( 1 )
-uv1_scale = Vector3( 50, 50, 1 )
+[sub_resource type="StandardMaterial3D" id="1"]
+albedo_texture = ExtResource("1")
+uv1_scale = Vector3(50, 50, 1)
 
-[sub_resource type="CubeMesh" id=2]
-material = SubResource( 1 )
-size = Vector3( 100, 2, 100 )
+[sub_resource type="BoxMesh" id="2"]
+material = SubResource("1")
+size = Vector3(100, 2, 100)
 
-[sub_resource type="ConcavePolygonShape" id=3]
-data = PoolVector3Array( -50, 1, 50, 50, 1, 50, -50, -1, 50, 50, 1, 50, 50, -1, 50, -50, -1, 50, 50, 1, -50, -50, 1, -50, 50, -1, -50, -50, 1, -50, -50, -1, -50, 50, -1, -50, 50, 1, 50, 50, 1, -50, 50, -1, 50, 50, 1, -50, 50, -1, -50, 50, -1, 50, -50, 1, -50, -50, 1, 50, -50, -1, -50, -50, 1, 50, -50, -1, 50, -50, -1, -50, 50, 1, 50, -50, 1, 50, 50, 1, -50, -50, 1, 50, -50, 1, -50, 50, 1, -50, -50, -1, 50, 50, -1, 50, -50, -1, -50, 50, -1, 50, 50, -1, -50, -50, -1, -50 )
+[sub_resource type="ConcavePolygonShape3D" id="3"]
+data = PackedVector3Array(-50, 1, 50, 50, 1, 50, -50, -1, 50, 50, 1, 50, 50, -1, 50, -50, -1, 50, 50, 1, -50, -50, 1, -50, 50, -1, -50, -50, 1, -50, -50, -1, -50, 50, -1, -50, 50, 1, 50, 50, 1, -50, 50, -1, 50, 50, 1, -50, 50, -1, -50, 50, -1, 50, -50, 1, -50, -50, 1, 50, -50, -1, -50, -50, 1, 50, -50, -1, 50, -50, -1, -50, 50, 1, 50, -50, 1, 50, 50, 1, -50, -50, 1, 50, -50, 1, -50, 50, 1, -50, -50, -1, 50, 50, -1, 50, -50, -1, -50, 50, -1, 50, 50, -1, -50, -50, -1, -50)
 
-[sub_resource type="NavigationMesh" id=7]
-vertices = PoolVector3Array( -43.4, 1.4, -49.4, -49.4, 1.4, -49.4, -49.4, 1.4, -43.4, -37.1, 1.4, -49.4, -43.4, 1.4, -49.4, -49.4, 1.4, -43.4, -37.1, 1.4, -49.4, -49.4, 1.4, -43.4, -49.4, 1.4, -37.1, -31.1, 1.4, -49.4, -49.4, 1.4, -12.5, -49.4, 1.4, -6.5, -2.3, 1.4, -2, -31.1, 1.4, -49.4, -49.4, 1.4, -37.1, -49.4, 1.4, -31.1, -24.8, 1.4, -49.4, -2.3, 1.4, -2, 0.400002, 1.4, -2.3, 0.100002, 1.4, -49.4, -6.2, 1.4, -49.4, -24.8, 1.4, -49.4, -49.4, 1.4, -31.1, -49.4, 1.4, -24.8, -18.8, 1.4, -49.4, -2.3, 1.4, -2, -6.2, 1.4, -49.4, -12.5, 1.4, -49.4, -49.4, 1.4, -18.8, -49.4, 1.4, -12.5, -18.8, 1.4, -49.4, -49.4, 1.4, -24.8, -49.4, 1.4, -18.8, -12.5, 1.4, -49.4, -49.4, 1.4, -0.199997, -2.6, 1.4, -0.199997, -2.3, 1.4, -2, -49.4, 1.4, -6.5, 2.8, 1.4, 1.6, 2.2, 1.4, 1.9, 2.8, 1.4, 4.6, 10.3, 1.4, 4.6, 17.8, 1.4, -10.7, 19, 1.4, -11, 19, 1.4, -49.4, 9.4, 1.4, -49.4, 2.8, 1.4, -1.7, 2.8, 1.4, 1.6, 10.3, 1.4, 4.6, 17.8, 1.4, 4.6, 17.8, 1.4, -3.2, 0.400002, 1.4, -2.3, 2.8, 1.4, -1.7, 17.8, 1.4, -3.2, 17.8, 1.4, -10.7, 9.4, 1.4, -49.4, 0.100002, 1.4, -49.4, 49.3, 1.4, -39.5, 49.3, 1.4, -49.4, 41.5, 1.4, -49.4, 49.3, 1.4, -39.5, 41.5, 1.4, -49.4, 34, 1.4, -49.4, 49.3, 1.4, -39.5, 34, 1.4, -49.4, 26.5, 1.4, -49.4, 49.3, 1.4, -29.3, 20.2, 1.4, -10.7, 20.2, 1.4, -8.9, 49.3, 1.4, -9.2, 19, 1.4, -11, 20.2, 1.4, -10.7, 49.3, 1.4, -9.2, 49.3, 1.4, -19.4, 19, 1.4, -11, 49.3, 1.4, -19.4, 49.3, 1.4, -29.3, 26.5, 1.4, -49.4, 19, 1.4, -49.4, 20.2, 1.4, 4.3, 49.3, 1.4, 4.6, 49.3, 1.4, -2.3, 20.2, 1.4, -2.3, 49.3, 1.4, -2.3, 49.3, 1.4, -9.2, 20.2, 1.4, -8.9, 20.2, 1.4, -2.3, 2.2, 1.4, 4.9, 2.8, 1.4, 4.6, 2.2, 1.4, 1.9, -2.3, 1.4, 1.9, -2.3, 1.4, 1.9, -49.4, 1.4, 5.8, -49.4, 1.4, 12.1, 2.2, 1.4, 6.4, 2.2, 1.4, 4.9, -2.3, 1.4, 1.9, -49.4, 1.4, 43, -49.4, 1.4, 49.3, -42.8, 1.4, 49.3, -49.4, 1.4, 36.7, -49.4, 1.4, 43, -42.8, 1.4, 49.3, -35.9, 1.4, 49.3, -8.9, 1.4, 49.3, -2, 1.4, 49.3, 2.2, 1.4, 6.4, -49.4, 1.4, 30.4, -49.4, 1.4, 36.7, -35.9, 1.4, 49.3, -29.3, 1.4, 49.3, -2.3, 1.4, 1.9, -2.6, 1.4, -0.199997, -49.4, 1.4, -0.199997, -49.4, 1.4, 5.8, -49.4, 1.4, 24.4, -49.4, 1.4, 30.4, -29.3, 1.4, 49.3, -22.4, 1.4, 49.3, -15.8, 1.4, 49.3, -8.9, 1.4, 49.3, 2.2, 1.4, 6.4, -2.3, 1.4, 1.9, -49.4, 1.4, 12.1, -49.4, 1.4, 18.1, -49.4, 1.4, 18.1, -49.4, 1.4, 24.4, -22.4, 1.4, 49.3, -15.8, 1.4, 49.3, 4.9, 1.4, 49.3, 4.9, 1.4, 6.7, 2.2, 1.4, 6.4, -2, 1.4, 49.3, 41.2, 1.4, 49.3, 49.3, 1.4, 49.3, 49.3, 1.4, 37.9, 33.1, 1.4, 49.3, 41.2, 1.4, 49.3, 49.3, 1.4, 37.9, 25, 1.4, 49.3, 33.1, 1.4, 49.3, 49.3, 1.4, 37.9, 49.3, 1.4, 26.8, 49.3, 1.4, 4.6, 20.2, 1.4, 4.3, 20.2, 1.4, 6.1, 49.3, 1.4, 4.6, 20.2, 1.4, 6.1, 19.6, 1.4, 6.7, 49.3, 1.4, 15.7, 49.3, 1.4, 15.7, 19.6, 1.4, 6.7, 17.2, 1.4, 6.7, 17.2, 1.4, 49.3, 25, 1.4, 49.3, 49.3, 1.4, 26.8, 10.9, 1.4, 6.7, 4.9, 1.4, 6.7, 4.9, 1.4, 49.3, 10.9, 1.4, 49.3, 10.9, 1.4, 49.3, 17.2, 1.4, 49.3, 17.2, 1.4, 6.7, 10.9, 1.4, 6.7 )
-polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 5, 4, 3 ), PoolIntArray( 7, 6, 8 ), PoolIntArray( 8, 6, 9 ), PoolIntArray( 12, 11, 10 ), PoolIntArray( 14, 13, 15 ), PoolIntArray( 15, 13, 16 ), PoolIntArray( 18, 17, 19 ), PoolIntArray( 19, 17, 20 ), PoolIntArray( 22, 21, 23 ), PoolIntArray( 23, 21, 24 ), PoolIntArray( 26, 25, 27 ), PoolIntArray( 27, 25, 28 ), PoolIntArray( 28, 25, 29 ), PoolIntArray( 31, 30, 32 ), PoolIntArray( 32, 30, 33 ), PoolIntArray( 35, 34, 36 ), PoolIntArray( 36, 34, 37 ), PoolIntArray( 39, 38, 40 ), PoolIntArray( 40, 38, 41 ), PoolIntArray( 43, 42, 44 ), PoolIntArray( 44, 42, 45 ), PoolIntArray( 47, 46, 48 ), PoolIntArray( 48, 46, 49 ), PoolIntArray( 49, 46, 50 ), PoolIntArray( 52, 51, 53 ), PoolIntArray( 53, 51, 54 ), PoolIntArray( 54, 51, 55 ), PoolIntArray( 55, 51, 56 ), PoolIntArray( 59, 58, 57 ), PoolIntArray( 62, 61, 60 ), PoolIntArray( 64, 63, 65 ), PoolIntArray( 65, 63, 66 ), PoolIntArray( 67, 69, 68 ), PoolIntArray( 71, 70, 72 ), PoolIntArray( 72, 70, 73 ), PoolIntArray( 77, 76, 78 ), PoolIntArray( 78, 76, 75 ), PoolIntArray( 78, 75, 74 ), PoolIntArray( 82, 81, 79 ), PoolIntArray( 79, 81, 80 ), PoolIntArray( 86, 85, 83 ), PoolIntArray( 83, 85, 84 ), PoolIntArray( 88, 87, 89 ), PoolIntArray( 89, 87, 90 ), PoolIntArray( 93, 92, 91 ), PoolIntArray( 96, 95, 94 ), PoolIntArray( 99, 98, 97 ), PoolIntArray( 101, 100, 102 ), PoolIntArray( 102, 100, 103 ), PoolIntArray( 106, 105, 104 ), PoolIntArray( 108, 107, 109 ), PoolIntArray( 109, 107, 110 ), PoolIntArray( 112, 111, 113 ), PoolIntArray( 113, 111, 114 ), PoolIntArray( 116, 115, 117 ), PoolIntArray( 117, 115, 118 ), PoolIntArray( 120, 119, 121 ), PoolIntArray( 121, 119, 122 ), PoolIntArray( 122, 119, 124 ), PoolIntArray( 122, 124, 123 ), PoolIntArray( 126, 125, 127 ), PoolIntArray( 127, 125, 128 ), PoolIntArray( 130, 129, 131 ), PoolIntArray( 131, 129, 132 ), PoolIntArray( 135, 134, 133 ), PoolIntArray( 138, 137, 136 ), PoolIntArray( 140, 139, 141 ), PoolIntArray( 141, 139, 142 ), PoolIntArray( 145, 144, 143 ), PoolIntArray( 147, 146, 148 ), PoolIntArray( 148, 146, 149 ), PoolIntArray( 151, 150, 152 ), PoolIntArray( 152, 150, 155 ), PoolIntArray( 152, 155, 154 ), PoolIntArray( 152, 154, 153 ), PoolIntArray( 159, 158, 156 ), PoolIntArray( 156, 158, 157 ), PoolIntArray( 163, 162, 160 ), PoolIntArray( 160, 162, 161 ) ]
+[sub_resource type="Sky" id="6"]
 
-[sub_resource type="ProceduralSky" id=6]
-sky_top_color = Color( 0.156863, 0.184314, 0.211765, 1 )
-sky_horizon_color = Color( 0.423529, 0.396078, 0.372549, 1 )
-sky_curve = 0.272829
-sky_energy = 2.0
-sun_color = Color( 0.984314, 0.137255, 0, 1 )
-
-[sub_resource type="Environment" id=5]
+[sub_resource type="Environment" id="5"]
 background_mode = 2
-background_sky = SubResource( 6 )
+sky = SubResource("6")
 
-[node name="World" type="Spatial"]
+[sub_resource type="NavigationMesh" id="7"]
+vertices = PackedVector3Array(-43.4, 1.4, -49.4, -49.4, 1.4, -49.4, -49.4, 1.4, -43.4, -37.1, 1.4, -49.4, -43.4, 1.4, -49.4, -49.4, 1.4, -43.4, -37.1, 1.4, -49.4, -49.4, 1.4, -43.4, -49.4, 1.4, -37.1, -31.1, 1.4, -49.4, -49.4, 1.4, -12.5, -49.4, 1.4, -6.5, -2.3, 1.4, -2, -31.1, 1.4, -49.4, -49.4, 1.4, -37.1, -49.4, 1.4, -31.1, -24.8, 1.4, -49.4, -2.3, 1.4, -2, 0.400002, 1.4, -2.3, 0.100002, 1.4, -49.4, -6.2, 1.4, -49.4, -24.8, 1.4, -49.4, -49.4, 1.4, -31.1, -49.4, 1.4, -24.8, -18.8, 1.4, -49.4, -2.3, 1.4, -2, -6.2, 1.4, -49.4, -12.5, 1.4, -49.4, -49.4, 1.4, -18.8, -49.4, 1.4, -12.5, -18.8, 1.4, -49.4, -49.4, 1.4, -24.8, -49.4, 1.4, -18.8, -12.5, 1.4, -49.4, -49.4, 1.4, -0.199997, -2.6, 1.4, -0.199997, -2.3, 1.4, -2, -49.4, 1.4, -6.5, 2.8, 1.4, 1.6, 2.2, 1.4, 1.9, 2.8, 1.4, 4.6, 10.3, 1.4, 4.6, 17.8, 1.4, -10.7, 19, 1.4, -11, 19, 1.4, -49.4, 9.4, 1.4, -49.4, 2.8, 1.4, -1.7, 2.8, 1.4, 1.6, 10.3, 1.4, 4.6, 17.8, 1.4, 4.6, 17.8, 1.4, -3.2, 0.400002, 1.4, -2.3, 2.8, 1.4, -1.7, 17.8, 1.4, -3.2, 17.8, 1.4, -10.7, 9.4, 1.4, -49.4, 0.100002, 1.4, -49.4, 49.3, 1.4, -39.5, 49.3, 1.4, -49.4, 41.5, 1.4, -49.4, 49.3, 1.4, -39.5, 41.5, 1.4, -49.4, 34, 1.4, -49.4, 49.3, 1.4, -39.5, 34, 1.4, -49.4, 26.5, 1.4, -49.4, 49.3, 1.4, -29.3, 20.2, 1.4, -10.7, 20.2, 1.4, -8.9, 49.3, 1.4, -9.2, 19, 1.4, -11, 20.2, 1.4, -10.7, 49.3, 1.4, -9.2, 49.3, 1.4, -19.4, 19, 1.4, -11, 49.3, 1.4, -19.4, 49.3, 1.4, -29.3, 26.5, 1.4, -49.4, 19, 1.4, -49.4, 20.2, 1.4, 4.3, 49.3, 1.4, 4.6, 49.3, 1.4, -2.3, 20.2, 1.4, -2.3, 49.3, 1.4, -2.3, 49.3, 1.4, -9.2, 20.2, 1.4, -8.9, 20.2, 1.4, -2.3, 2.2, 1.4, 4.9, 2.8, 1.4, 4.6, 2.2, 1.4, 1.9, -2.3, 1.4, 1.9, -2.3, 1.4, 1.9, -49.4, 1.4, 5.8, -49.4, 1.4, 12.1, 2.2, 1.4, 6.4, 2.2, 1.4, 4.9, -2.3, 1.4, 1.9, -49.4, 1.4, 43, -49.4, 1.4, 49.3, -42.8, 1.4, 49.3, -49.4, 1.4, 36.7, -49.4, 1.4, 43, -42.8, 1.4, 49.3, -35.9, 1.4, 49.3, -8.9, 1.4, 49.3, -2, 1.4, 49.3, 2.2, 1.4, 6.4, -49.4, 1.4, 30.4, -49.4, 1.4, 36.7, -35.9, 1.4, 49.3, -29.3, 1.4, 49.3, -2.3, 1.4, 1.9, -2.6, 1.4, -0.199997, -49.4, 1.4, -0.199997, -49.4, 1.4, 5.8, -49.4, 1.4, 24.4, -49.4, 1.4, 30.4, -29.3, 1.4, 49.3, -22.4, 1.4, 49.3, -15.8, 1.4, 49.3, -8.9, 1.4, 49.3, 2.2, 1.4, 6.4, -2.3, 1.4, 1.9, -49.4, 1.4, 12.1, -49.4, 1.4, 18.1, -49.4, 1.4, 18.1, -49.4, 1.4, 24.4, -22.4, 1.4, 49.3, -15.8, 1.4, 49.3, 4.9, 1.4, 49.3, 4.9, 1.4, 6.7, 2.2, 1.4, 6.4, -2, 1.4, 49.3, 41.2, 1.4, 49.3, 49.3, 1.4, 49.3, 49.3, 1.4, 37.9, 33.1, 1.4, 49.3, 41.2, 1.4, 49.3, 49.3, 1.4, 37.9, 25, 1.4, 49.3, 33.1, 1.4, 49.3, 49.3, 1.4, 37.9, 49.3, 1.4, 26.8, 49.3, 1.4, 4.6, 20.2, 1.4, 4.3, 20.2, 1.4, 6.1, 49.3, 1.4, 4.6, 20.2, 1.4, 6.1, 19.6, 1.4, 6.7, 49.3, 1.4, 15.7, 49.3, 1.4, 15.7, 19.6, 1.4, 6.7, 17.2, 1.4, 6.7, 17.2, 1.4, 49.3, 25, 1.4, 49.3, 49.3, 1.4, 26.8, 10.9, 1.4, 6.7, 4.9, 1.4, 6.7, 4.9, 1.4, 49.3, 10.9, 1.4, 49.3, 10.9, 1.4, 49.3, 17.2, 1.4, 49.3, 17.2, 1.4, 6.7, 10.9, 1.4, 6.7)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(12, 11, 10), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 16), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 20), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 24), PackedInt32Array(26, 25, 27), PackedInt32Array(27, 25, 28), PackedInt32Array(28, 25, 29), PackedInt32Array(31, 30, 32), PackedInt32Array(32, 30, 33), PackedInt32Array(35, 34, 36), PackedInt32Array(36, 34, 37), PackedInt32Array(39, 38, 40), PackedInt32Array(40, 38, 41), PackedInt32Array(43, 42, 44), PackedInt32Array(44, 42, 45), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 49), PackedInt32Array(49, 46, 50), PackedInt32Array(52, 51, 53), PackedInt32Array(53, 51, 54), PackedInt32Array(54, 51, 55), PackedInt32Array(55, 51, 56), PackedInt32Array(59, 58, 57), PackedInt32Array(62, 61, 60), PackedInt32Array(64, 63, 65), PackedInt32Array(65, 63, 66), PackedInt32Array(67, 69, 68), PackedInt32Array(71, 70, 72), PackedInt32Array(72, 70, 73), PackedInt32Array(77, 76, 78), PackedInt32Array(78, 76, 75), PackedInt32Array(78, 75, 74), PackedInt32Array(82, 81, 79), PackedInt32Array(79, 81, 80), PackedInt32Array(86, 85, 83), PackedInt32Array(83, 85, 84), PackedInt32Array(88, 87, 89), PackedInt32Array(89, 87, 90), PackedInt32Array(93, 92, 91), PackedInt32Array(96, 95, 94), PackedInt32Array(99, 98, 97), PackedInt32Array(101, 100, 102), PackedInt32Array(102, 100, 103), PackedInt32Array(106, 105, 104), PackedInt32Array(108, 107, 109), PackedInt32Array(109, 107, 110), PackedInt32Array(112, 111, 113), PackedInt32Array(113, 111, 114), PackedInt32Array(116, 115, 117), PackedInt32Array(117, 115, 118), PackedInt32Array(120, 119, 121), PackedInt32Array(121, 119, 122), PackedInt32Array(122, 119, 124), PackedInt32Array(122, 124, 123), PackedInt32Array(126, 125, 127), PackedInt32Array(127, 125, 128), PackedInt32Array(130, 129, 131), PackedInt32Array(131, 129, 132), PackedInt32Array(135, 134, 133), PackedInt32Array(138, 137, 136), PackedInt32Array(140, 139, 141), PackedInt32Array(141, 139, 142), PackedInt32Array(145, 144, 143), PackedInt32Array(147, 146, 148), PackedInt32Array(148, 146, 149), PackedInt32Array(151, 150, 152), PackedInt32Array(152, 150, 155), PackedInt32Array(152, 155, 154), PackedInt32Array(152, 154, 153), PackedInt32Array(159, 158, 156), PackedInt32Array(156, 158, 157), PackedInt32Array(163, 162, 160), PackedInt32Array(160, 162, 161)]
 
-[node name="Environment" type="Spatial" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="World" type="Node3D"]
 
-[node name="Ground" type="MeshInstance" parent="Environment"]
-mesh = SubResource( 2 )
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="Environment"]
+mesh = SubResource("2")
 skeleton = NodePath("../..")
-material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="Environment/Ground"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground"]
 
-[node name="CollisionShape" type="CollisionShape" parent="Environment/Ground/StaticBody"]
-shape = SubResource( 3 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/StaticBody3D"]
+shape = SubResource("3")
 
-[node name="brickwall" parent="Environment" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5.60492 )
+[node name="brickwall" parent="Environment" instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5.60492)
 
-[node name="brickwall2" parent="Environment" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1, 5.60492 )
+[node name="brickwall2" parent="Environment" instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1, 5.60492)
 
-[node name="brickwall3" parent="Environment" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1, 5.60492 )
+[node name="brickwall3" parent="Environment" instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1, 5.60492)
 
-[node name="brickwall4" parent="Environment" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 1, 5.60492 )
+[node name="brickwall4" parent="Environment" instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 1, 5.60492)
 
-[node name="brickwall5" parent="Environment" instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19, 1, 3.60492 )
+[node name="brickwall5" parent="Environment" instance=ExtResource("2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19, 1, 3.60492)
 
-[node name="brickwall6" parent="Environment" instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19, 1, -0.395076 )
+[node name="brickwall6" parent="Environment" instance=ExtResource("2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19, 1, -0.395076)
 
-[node name="brickwall7" parent="Environment" instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19, 1, -4.39508 )
+[node name="brickwall7" parent="Environment" instance=ExtResource("2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19, 1, -4.39508)
 
-[node name="brickwall8" parent="Environment" instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19, 1, -8.39508 )
+[node name="brickwall8" parent="Environment" instance=ExtResource("2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19, 1, -8.39508)
 
-[node name="shed" parent="Environment" instance=ExtResource( 3 )]
-
-[node name="Navigation" type="Navigation" parent="."]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
-navmesh = SubResource( 7 )
-
-[node name="BirdMonster" parent="Navigation" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, -27.1565 )
-
-[node name="ReptileMonster" parent="Navigation" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.20303, 1, -27.1565 )
-
-[node name="ReptileMonster2" parent="Navigation" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.20303, 1, -16.1012 )
+[node name="shed" parent="Environment" instance=ExtResource("3")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 5 )
+environment = SubResource("5")
 
-[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
-transform = Transform( -0.99312, 0, -0.117104, -0.10745, 0.397596, 0.911247, 0.0465602, 0.91756, -0.394861, -3.22707, 16.9663, -28.7528 )
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.99312, 0, -0.117104, -0.10745, 0.397596, 0.911247, 0.0465602, 0.91756, -0.394861, -3.22707, 16.9663, -28.7528)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 10.6612 )
+[node name="Player" parent="." instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 10.6612)
 
-[node name="HealthPickup" parent="." instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9381, 1, 6.4085 )
+[node name="HealthPickup" parent="." instance=ExtResource("9")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9381, 1, 6.4085)
 
-[node name="MachineGunAmmoPickup" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8621, 1, 6.4085 )
+[node name="MachineGunAmmoPickup" parent="." instance=ExtResource("8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8621, 1, 6.4085)
 
-[node name="MachineGunPickup" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2031, 1, 6.4085 )
+[node name="MachineGunPickup" parent="." instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2031, 1, 6.4085)
 
-[node name="RocketLauncherAmmoPickup" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.329, 1, 6.4085 )
+[node name="RocketLauncherAmmoPickup" parent="." instance=ExtResource("10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.329, 1, 6.4085)
 
-[node name="RocketLauncherPickup" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.79607, 1, 6.4085 )
+[node name="RocketLauncherPickup" parent="." instance=ExtResource("11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.79607, 1, 6.4085)
 
-[node name="ShotgunAmmoPickup" parent="." instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4861, 1, 6.4085 )
+[node name="ShotgunAmmoPickup" parent="." instance=ExtResource("13")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4861, 1, 6.4085)
 
-[node name="ShotgunPickup" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.84118, 1, 6.4085 )
+[node name="ShotgunPickup" parent="." instance=ExtResource("12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.84118, 1, 6.4085)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("7")
+
+[node name="BirdMonster" parent="NavigationRegion3D" instance=ExtResource("6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, -27.1565)
+
+[node name="ReptileMonster" parent="NavigationRegion3D" instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.20303, 1, -27.1565)
+
+[node name="ReptileMonster2" parent="NavigationRegion3D" instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.20303, 1, -16.1012)

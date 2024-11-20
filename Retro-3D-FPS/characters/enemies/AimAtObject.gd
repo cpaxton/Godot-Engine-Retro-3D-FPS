@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 func aim_at_position(pos: Vector3):
 	rotation = Vector3.ZERO
